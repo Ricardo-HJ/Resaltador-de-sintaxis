@@ -2,11 +2,11 @@ import re
 
 def tokenize_basic(code):
     patterns = [
+        ('COMMENT', r'(\'.*|\bREM\s.*)'),
         ('KEYWORD', r'\b(AND|OR|NOT|REM|LET|IF|THEN|ELSE|ELSEIF|ENDIF|GOTO|GOSUB|RETURN|FOR|TO|STEP|NEXT|WHILE|WEND|DO|LOOP|EXIT|SELECT|CASE|ENDSELECT|ENDCASE|DIM|AS|FUNCTION|ENDFUNCTION|SUB|ENDSUB|PRINT|INPUT|READ|DATA|RESTORE|GOTO|ON|ERROR|RESUME|RESUME_NEXT|STOP|END|CONST|INCLUDE)\b'),
         ('LITERAL', r'("[^"]*"|\b\d+(\.\d+)?\b)'),
         ('OPERATOR', r'(\+|-|\*|/|\^|=|<|>|<=|>=|<>|MOD|AND|OR|NOT)'),
         ('SEPARATOR', r'[\(\)\[\]{},:;\.]'),
-        ('COMMENT', r'\'[^\n]*'),
         ('IDENTIFIER', r'[a-zA-Z_]\w*'),
     ]
 
@@ -28,7 +28,6 @@ def tokenize_basic(code):
     return tokens
 
 def generate_html(tokens):
-    # Definir colores constantes para cada tipo de token
     color_map = {
         'KEYWORD': '#56E1FF',      # Azul
         'IDENTIFIER': '#ffffff',   # Blanco
@@ -36,7 +35,7 @@ def generate_html(tokens):
         'LITERAL': '#23FF55',      # Verde
         'SEPARATOR': '#FF295D',    # Rojo
         'COMMENT': '#9256FF',      # Morado
-        'OTHER': '#212529',       # Negro
+        'OTHER': '#212529',        # Negro
     }
 
     html = '''<!DOCTYPE html>
@@ -51,8 +50,7 @@ def generate_html(tokens):
         .color-item { padding: 15px; border-radius: 5px; color: black; font-weight: bold; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .token { display: inline; }
 '''
-    
-    # Generar estilos CSS y guía de colores
+
     for token_type, color in color_map.items():
         html += f'''        .{token_type.lower()} {{
             color: {color};
@@ -69,7 +67,6 @@ def generate_html(tokens):
     <h2>Codigo de colores</h2>
     <div class="color-guide">'''
 
-    # Agregar elementos de la guía de colores (excluyendo 'OTHER')
     for token_type, _ in color_map.items():
         if token_type != 'OTHER':
             html += f'        <div class="color-item guide-{token_type.lower()}">{token_type.capitalize()}</div>\n'
@@ -78,7 +75,6 @@ def generate_html(tokens):
     <h2>Codigo resaltado</h2>
     <pre><code>'''
 
-    # Resaltar el código
     for token_type, value in tokens:
         escaped_value = value.replace('<', '&lt;').replace('>', '&gt;').replace(' ', '&nbsp;')
         html += f'<span class="token {token_type.lower()}">{escaped_value}</span>'
@@ -93,11 +89,12 @@ file_path = input("Introduce la ruta del archivo BASIC: ")
 with open(file_path, 'r') as file:
     code = file.read()
 
-tokens = tokenize_basic(code)
+tokens = tokenize_basic(code)  
+
 html_output = generate_html(tokens)
 
 output_path = "BASIC_Resaltado.html"
 with open(output_path, 'w') as file:
     file.write(html_output)
 
-print(f"El código resaltado se ha guardado en {output_path}")
+print(f"El codigo resaltado se ha guardado en {output_path}")

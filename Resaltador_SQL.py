@@ -2,11 +2,11 @@ import re
 
 def tokenize_sql(code):
     patterns = [
+        ('COMMENT', r'--.*'),
         ('KEYWORD', r'\b(SELECT|FROM|WHERE|AND|OR|NOT|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DROP|ALTER|ADD|PRIMARY|KEY|FOREIGN|REFERENCES|INDEX|ASC|DESC)\b'),
         ('LITERAL', r'(".*?"|\'.*?\')'),
         ('OPERATOR', r'(\+|-|\*|/|%|=|!=|<|>|<=|>=|AND|OR)'),
         ('SEPARATOR', r'[\(\)\[\]{},:;.]'),
-        ('COMMENT', r'--.*'),
         ('IDENTIFIER', r'\b[a-zA-Z_]\w*\b'),
     ]
 
