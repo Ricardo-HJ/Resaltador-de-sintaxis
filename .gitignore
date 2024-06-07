@@ -3,3 +3,6 @@
 
 # Ignore all ZIP files
 *.zip
+
+#ignore all hmtl files
+*.html
