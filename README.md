@@ -55,6 +55,31 @@ Para cada uno de los resaltadores, puedes ejecutar el script correspondiente. A 
 3. Ingresa `input.sql` cuando se te solicite la ruta del archivo.
 4. El archivo HTML resultante se guardará como `SQL_Resaltado.html`.
 
+#### Resaltador Paralelo con Pool
+
+1. Coloca tus archivos en el mismo directorio del script.
+2. Ejecuta el script `Resaltador_paralelo_pool.py`:
+
+    ```bash
+    python Resaltador_paralelo_pool.py
+    ```
+
+3. Ingresa las rutas de los archivos cuando se te solicite.
+4. Los archivos HTML resultantes se guardarán con el nombre original seguido de `[lenguaje]_resaltado.html`.
+
+#### Resaltador Paralelo con Threading
+
+1. Coloca tus archivos en el mismo directorio del script.
+2. Ejecuta el script `Resaltador_paralelo_threading.py`:
+
+    ```bash
+    python Resaltador_paralelo_threading.py
+    ```
+
+3. Ingresa las rutas de los archivos cuando se te solicite.
+4. Los archivos HTML resultantes se guardarán con el nombre original seguido de `[lenguaje]_resaltado.html`.
+
+
 ## Contribuidores
 
 - María Renée Ramos Valdez A01252966

@@ -64,8 +64,9 @@ def generate_html(tokens, language):
     }
 
     html = '''<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Syntax Highlighter</title>
     <style>
         body { font-family: 'Inter', monospace; background-color: #3c3c3c; }

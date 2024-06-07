@@ -39,9 +39,10 @@ def generate_html(tokens):
     }
 
     html = '''<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Resaltador de sintaxis</title>
+    <meta charset="utf-8">
+    <title>Syntax Highlighter</title>
     <style>
         body { font-family: 'Inter', monospace; background-color: #3c3c3c; }
         h1, h2 { text-align: center; color: #ffffff; }
